@@ -8,6 +8,10 @@ body {
   background-color: #e7f6;
 }
 
+* {
+  font-family: "Inter", system-ui;
+}
+
 .clear {
   * {
     box-sizing: border-box;
@@ -43,7 +47,7 @@ header {
   svg {
     fill: grey;
   }
-  p{
+  p {
     opacity: 0.3;
   }
 }
@@ -74,7 +78,6 @@ header {
   padding: 40px;
   h1 {
     margin: 0;
-    margin-bottom: 40px;
   }
 }
 
@@ -87,24 +90,38 @@ header {
 .card {
   display: flex;
   flex-direction: column;
-  border: 1px solid rgb(238, 238, 238);
+  border: 1px solid rgb(245, 245, 245);
   padding: 20px;
   width: 210px;
-  border-radius: 20px;
+  border-radius: 15px;
   margin-right: 20px;
 
-  span{
+  span {
     text-transform: uppercase;
     opacity: 0.5;
     font-size: 13px;
   }
-  b{
+  b {
     font-size: 14px;
   }
 
   h5 {
     font-weight: 400;
     font-size: 14px;
+  }
+
+  .card-favorite {
+    position: absolute;
+    // cursor: pointer;
+    margin: 5px;
+  }
+
+  &:hover {
+    cursor: pointer;
+    box-shadow: 0px 14px 35px rgba(0, 0, 0, 0.08);
+    transform: translateY(-5px); // поднятие на 5px
+    // transform: scale(1.05); // Увеличение элемента на 5%
+    transition: box-shadow 0.3s ease, transform 0.3s ease; /* Плавный переход */
   }
 }
 
@@ -134,4 +151,117 @@ header {
   height: 32px;
   width: 32px;
   cursor: pointer;
+}
+
+// ================
+
+.content-top-block {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.search-block {
+  display: flex;
+  align-items: center;
+
+  border: 1px solid #f2f2f2;
+  border-radius: 10px;
+  padding: 0 15px;
+  input {
+    border: none;
+    padding: 10px;
+    font-size: 16px;
+    width: 200px;
+  }
+}
+
+// ========================
+
+.side-bar {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  width: 420px;
+  height: 100%;
+  right: 0;
+
+  background: #fff;
+  box-shadow: -10px 4px 24px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  h2 {
+    margin: 0;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  li {
+    display: flex;
+  }
+}
+
+.side-bar-overlay {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+.cartItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #f3f3f3;
+  border-radius: 10px;
+  padding: 10px;
+  overflow: hidden; // чтобы картинка не выходила за рамки
+  margin-bottom: 10px;
+  p {
+    margin: 0;
+    font-size: 14px;
+  }
+  b {
+    font-size: 16px;
+    // margin-bottom: 5px;
+  }
+  img {
+    margin-right: 10px;
+  }
+  div {
+    margin-right: 10px;
+  }
+}
+
+.cart-item-img {
+  height: 70px;
+  width: 70px;
+  background-size: cover;
+  background-position: center;
+}
+
+.remove-btn {
+  cursor: pointer;
+  opacity: 0.5;
+  transition: opacity 0.25s ease-in-out;
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.items {
+  flex: 1;
+}
+
+.stat {
+  div {
+    flex: 1;
+    // height: 1px;
+    border-bottom: 1px dashed #dfdfdf;
+    position: relative;
+    top: -3px;
+    margin: 0 7px;
+  }
 }

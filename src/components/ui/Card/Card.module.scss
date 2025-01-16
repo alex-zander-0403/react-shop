@@ -1,0 +1,48 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgb(245, 245, 245);
+  padding: 20px;
+  width: 210px;
+  border-radius: 15px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+
+  span {
+    text-transform: uppercase;
+    opacity: 0.5;
+    font-size: 13px;
+  }
+  b {
+    font-size: 14px;
+  }
+
+  h5 {
+    font-weight: 400;
+    font-size: 14px;
+  }
+
+  .img {
+    height: 200px;
+    // width: 70px;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .favorite {
+    position: absolute;
+    // cursor: pointer;
+    margin: 5px;
+    border: none;
+  }
+
+  &:hover {
+    cursor: pointer;
+    box-shadow: 0px 14px 35px rgba(0, 0, 0, 0.08);
+    transform: translateY(-5px); // поднятие на 5px
+    // transform: scale(1.05); // Увеличение элемента на 5%
+    transition: box-shadow 0.3s ease, transform 0.3s ease; /* Плавный переход */
+  }
+}
+
+

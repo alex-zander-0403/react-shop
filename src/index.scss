@@ -71,6 +71,7 @@ header {
   }
   li {
     margin-right: 15px;
+    cursor: pointer;
   }
 }
 
@@ -85,44 +86,7 @@ header {
 
 .goods {
   display: flex;
-}
-
-.card {
-  display: flex;
-  flex-direction: column;
-  border: 1px solid rgb(245, 245, 245);
-  padding: 20px;
-  width: 210px;
-  border-radius: 15px;
-  margin-right: 20px;
-
-  span {
-    text-transform: uppercase;
-    opacity: 0.5;
-    font-size: 13px;
-  }
-  b {
-    font-size: 14px;
-  }
-
-  h5 {
-    font-weight: 400;
-    font-size: 14px;
-  }
-
-  .card-favorite {
-    position: absolute;
-    // cursor: pointer;
-    margin: 5px;
-  }
-
-  &:hover {
-    cursor: pointer;
-    box-shadow: 0px 14px 35px rgba(0, 0, 0, 0.08);
-    transform: translateY(-5px); // поднятие на 5px
-    // transform: scale(1.05); // Увеличение элемента на 5%
-    transition: box-shadow 0.3s ease, transform 0.3s ease; /* Плавный переход */
-  }
+  flex-wrap: wrap;
 }
 
 .card-options {
@@ -191,12 +155,17 @@ header {
   box-shadow: -10px 4px 24px rgba(0, 0, 0, 0.1);
   padding: 30px;
   h2 {
+    display: flex;
+    justify-content: space-between;
     margin: 0;
     font-size: 24px;
     margin-bottom: 20px;
   }
   li {
     display: flex;
+  }
+  .items {
+    overflow: auto;
   }
 }
 
@@ -255,7 +224,13 @@ header {
   flex: 1;
 }
 
-.stat {
+.cart-stat {
+  ul {
+    margin: 20px 0;
+    li {
+      margin-bottom: 5px;
+    }
+  }
   div {
     flex: 1;
     // height: 1px;
@@ -263,5 +238,43 @@ header {
     position: relative;
     top: -3px;
     margin: 0 7px;
+  }
+
+  .green-button {
+    position: relative;
+
+    img {
+      position: absolute;
+      right: 50px;
+      top: 18px;
+      transition: transform 0.2s ease-in-out;
+    }
+
+    &:hover {
+      img {
+        transform: translateX(5px);
+      }
+    }
+  }
+}
+
+.green-button {
+  width: 100%;
+  height: 50px;
+  background-color: #9dd558;
+  border-radius: 18px;
+  border: none;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+
+  &:hover {
+    background: lighten($color: #9dd558, $amount: 10%);
+  }
+
+  &:active {
+    background: darken($color: #9dd558, $amount: 10%);
   }
 }

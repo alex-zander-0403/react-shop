@@ -2,17 +2,29 @@ import cardStyles from "./Card.module.scss";
 import React, { useState } from "react";
 
 //
-export default function Card({ el, onPlus }) {
+export default function Card({
+  id,
+  title,
+  img,
+  price,
+  onPlus,
+  onFavorite,
+  favorited = false,
+}) {
   //
-  const onClickFavorite = () => {
-    alert(`FAVORITE -> ${el.title}`);
+  const [isAdded, setIsAdded] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(favorited);
+
+  //
+  const onClickAdd = () => {
+    onPlus({ id, title, img, price });
+    setIsAdded(!isAdded);
   };
 
-  const [isAdded, setIsAdded] = useState(false);
-
-  const onClickAdd = () => {
-    onPlus(el);
-    setIsAdded(!isAdded);
+  //
+  const onClickFavorite = () => {
+    onFavorite({ id, title, img, price });
+    setIsFavorite(!isFavorite);
   };
 
   //
@@ -20,20 +32,23 @@ export default function Card({ el, onPlus }) {
     <>
       <div className={cardStyles.card}>
         <div className={cardStyles.favorite} onClick={onClickFavorite}>
-          <img src="/img/like-off.svg" alt="unliked" />
+          <img
+            src={isFavorite ? "/img/like-on.svg" : "/img/like-off.svg"}
+            alt="liked"
+          />
         </div>
 
         <div
           className={cardStyles.img}
           style={{
-            backgroundImage: `url(/img/allGoods/${el.img}.jpg)`,
+            backgroundImage: `url(/img/allGoods/${img}.jpg)`,
           }}
         ></div>
-        <h5>{el.title}</h5>
+        <h5>{title}</h5>
         <div className="card-options">
           <div className="card-price">
             <span>Цена:</span>
-            <b>{el.price}</b>
+            <b>{price}</b>
           </div>
 
           <button className="card-button" onClick={onClickAdd}>

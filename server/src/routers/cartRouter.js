@@ -15,17 +15,16 @@ cartRouter
       });
     }
   })
-
   .post(async (req, res) => {
     try {
       const { title, img, price } = req.body;
-      const item = await Cart.create({
+      const newItem = await Cart.create({
         title,
         img,
         price,
       });
-      res.status(201).json(item);
-      console.log(item);
+      res.status(201).json(newItem);
+      // console.log(newItem);
     } catch (error) {
       console.log(error);
       res.status(500).json({
@@ -34,5 +33,19 @@ cartRouter
       });
     }
   });
+
+cartRouter.route("/:id").delete(async (req, res) => {
+  try {
+    const { id } = req.params;
+    await Cart.destroy({ where: { id } });
+    res.sendStatus(200);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      message: error.message,
+      text: "Ошибка удаления cartItem",
+    });
+  }
+});
 
 module.exports = cartRouter;

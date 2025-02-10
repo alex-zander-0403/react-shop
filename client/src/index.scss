@@ -1,4 +1,4 @@
-// @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 
 body {
   margin: 0;
@@ -66,9 +66,14 @@ header {
 
 .headerRight {
   display: flex;
-  svg {
-    margin-right: 5px;
+
+  img {
+    margin-right: 15px;
   }
+  // span {
+  // justify-content: center;
+  // align-items: center;
+  // }
   li {
     margin-right: 15px;
     cursor: pointer;
@@ -229,6 +234,31 @@ header {
 
 .items {
   flex: 1;
+}
+
+.cart-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  flex: auto;
+
+  .green-button {
+    position: relative;
+
+    img {
+      position: absolute;
+      left: 50px;
+      top: 18px;
+      transition: transform 0.2s ease-in-out;
+    }
+
+    &:hover {
+      img {
+        transform: translateX(-5px);
+      }
+    }
+  }
 }
 
 .cart-stat {

@@ -17,19 +17,32 @@ cartRouter
   })
   .post(async (req, res) => {
     try {
-      const { title, img, price } = req.body;
+      const { id, title, img, price } = req.body;
       const newItem = await Cart.create({
+        id,
         title,
         img,
         price,
       });
       res.status(201).json(newItem);
-      // console.log(newItem);
     } catch (error) {
       console.log(error);
       res.status(500).json({
         message: error.message,
         text: "Ошибка добавления item в корзину",
+      });
+    }
+  })
+  // Удаляем все записи в корзине
+  .delete(async (req, res) => {
+    try {
+      await Cart.destroy({ where: {} });
+      res.sendStatus(200);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({
+        message: error.message,
+        text: "Ошибка при очистке корзины",
       });
     }
   });

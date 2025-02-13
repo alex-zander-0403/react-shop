@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export default function Header({ openCart }) {
+export default function Header({ openCart, favorites }) {
   return (
     <header>
       <Link to="/">
@@ -20,9 +20,9 @@ export default function Header({ openCart }) {
         </li>
         <li>
           <img width="20" height="20" src="/img/ico-user.svg" alt="user" />
-          <span>Пользователь</span>
+          {/* <span>Пользователь</span> */}
         </li>
-        <li>
+        <li className="favoritesButton">
           <Link to="/favorites">
             <img
               width="20"
@@ -30,8 +30,10 @@ export default function Header({ openCart }) {
               src="/img/ico-favorite.svg"
               alt="favorite"
             />
-            <span>Избранное</span>
-            {/* <p>{favorites.length}</p> */}
+            {/* <span>Избранное</span> */}
+            {favorites.length > 0 && (
+              <div className="favoritesCount">{favorites.length}</div>
+            )}
           </Link>
         </li>
       </ul>

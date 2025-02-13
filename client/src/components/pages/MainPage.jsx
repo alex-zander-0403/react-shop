@@ -1,5 +1,7 @@
 import React from "react";
 import Card from "../ui/Card/index";
+import FakeCardsArr from "../ui/Card/FakeCardsArr";
+import AppContext from "../../context";
 
 export default function MainPage({
   items,
@@ -8,7 +10,33 @@ export default function MainPage({
   onAddToFavorite,
   onChangeSearchValue,
   setSearchValue,
+  isLoading,
 }) {
+  // вынос рендера всех товаров в отдельную функцию
+  const renderItems = () => {
+    const filteredItems = items.filter((item) =>
+      item.title.toLowerCase().includes(searchValue.toLowerCase())
+    );
+
+    //
+    //FakeCardsArr() = [...Array(8)]
+    return (isLoading ? FakeCardsArr() : filteredItems).map((item) => (
+      <Card
+        key={item.id}
+        // item={item} // весь item целым объектом
+        {...item} // весь item по свойствам но в одну строку
+        // id={item.id}
+        // title={item.title}
+        // img={item.img}
+        // price={item.price}
+        //
+        loading={isLoading} // false true
+        onPlus={(obj) => onAddToCart(obj)}
+        onFavorite={(obj) => onAddToFavorite(obj)}
+      />
+    ));
+  };
+
   return (
     <div className="content">
       <div className="content-top-block">
@@ -36,25 +64,7 @@ export default function MainPage({
         </div>
       </div>
 
-      <div className="goods">
-        {items
-          .filter((item) =>
-            item.title.toLowerCase().includes(searchValue.toLowerCase())
-          )
-          .map((item) => (
-            <Card
-              key={item.id}
-              // item={item}
-              id={item.id}
-              title={item.title}
-              img={item.img}
-              price={item.price}
-              //
-              onPlus={(obj) => onAddToCart(obj)}
-              onFavorite={(obj) => onAddToFavorite(obj)}
-            />
-          ))}
-      </div>
+      <div className="goods">{renderItems()}</div>
     </div>
   );
 }

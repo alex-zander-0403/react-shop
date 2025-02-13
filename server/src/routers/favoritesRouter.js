@@ -7,7 +7,6 @@ favoriteRouter
     try {
       const all = await Favorite.findAll();
       res.json(all);
-      console.log("-----------", all);
     } catch (error) {
       console.log(error);
       res.status(500).json({
@@ -18,7 +17,6 @@ favoriteRouter
   })
   .post(async (req, res) => {
     try {
-      // const { id } = req.params;
       const { id, title, img, price } = req.body;
       const newItem = await Favorite.create({
         id,
@@ -27,7 +25,6 @@ favoriteRouter
         price,
       });
       res.status(201).json(newItem);
-      console.log(newItem);
     } catch (error) {
       console.log(error);
       res.status(500).json({
